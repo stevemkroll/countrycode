@@ -1,8 +1,0 @@
-{
-    "workbench.colorTheme": "Monokai",
-    "go.useLanguageServer": true,
-    "go.lintOnSave": "file",
-    "go.testFlags": [
-        "-v"
-    ]
-}
