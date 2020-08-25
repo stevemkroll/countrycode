@@ -2,6 +2,8 @@ package countrycode
 
 import "strings"
 
+// https://www.iban.com/country-codes
+
 // Constants
 const (
 	Alpha2  string = "alpha2"
