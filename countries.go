@@ -1,25 +1,7 @@
 package countrycode
 
 // Countries defines the list of supported countries
-var Countries = map[string]Country{
-	"US": US,
-	"CA": CA,
-	"MX": MX,
-	"GB": GB,
-	"DK": DK,
-	"FI": FI,
-	"FR": FR,
-	"DE": DE,
-	"HU": HU,
-	"IS": IS,
-	"IT": IT,
-	"NL": NL,
-	"NO": NO,
-	"PL": PL,
-	"ES": ES,
-	"SE": SE,
-	"CH": CH,
-}
+var Countries = []Country{US, CA, MX, GB, DK, FI, FR, DE, HU, IS, IT, NL, NO, PL, ES, SE, CH}
 
 // US United States
 var US = Country{

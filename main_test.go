@@ -1,6 +1,16 @@
 package countrycode
 
-import "testing"
+import (
+	"io/ioutil"
+	"log"
+	"os"
+	"testing"
+)
+
+func TestMain(m *testing.M) {
+	log.SetOutput(ioutil.Discard)
+	os.Exit(m.Run())
+}
 
 func TestConvertNumeric(t *testing.T) {
 	var c []string = []string{
@@ -13,7 +23,7 @@ func TestConvertNumeric(t *testing.T) {
 	for _, i := range c {
 		str, err := Convert(i, Numeric)
 		if err != nil {
-			if err != ErrUnsupportedCountryCode && err != ErrUnsupportedFormat {
+			if err != ErrInvalidCountryCode && err != ErrInvalidFormat {
 				t.Fail()
 			}
 			t.Log(err.Error())

@@ -4,6 +4,6 @@ import "errors"
 
 // Errors
 var (
-	ErrUnsupportedFormat      = errors.New("Error: unsupported format")
-	ErrUnsupportedCountryCode = errors.New("Error: unsupported country code")
+	ErrInvalidFormat      = errors.New("error: invalid format")
+	ErrInvalidCountryCode = errors.New("error: invalid country code")
 )
