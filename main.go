@@ -1,7 +1,7 @@
 package countrycode
 
 import (
-	"log"
+	"fmt"
 	"strings"
 )
 
@@ -9,9 +9,9 @@ import (
 
 // Constants
 const (
-	Alpha2  string = "alpha2"
-	Alpha3  string = "alpha3"
-	Numeric string = "numeric"
+	Alpha2  string = "ALPHA2"
+	Alpha3  string = "ALPHA3"
+	Numeric string = "NUMERIC"
 )
 
 // Country defines the Country struct containing the Alpha2, Alpha3 and Numeric ISO codes
@@ -23,24 +23,51 @@ type Country struct {
 
 // Convert returns the converted ISO code string or an error
 func Convert(code string, format string) (string, error) {
+
+	country, err := getCountry(code)
+	if err != nil {
+		return "", err
+	}
+
+	output, err := getFormat(country, format)
+	if err != nil {
+		return "", err
+	}
+
+	return output, nil
+}
+
+func getCountry(code string) (Country, error) {
 	code = strings.ToUpper(code)
-	c := Country{}
-	for i, v := range Countries {
-		switch true {
-		case v.Alpha2 == code, v.Alpha3 == code, v.Numeric == code:
-			log.Println(Countries[i])
-			c = Countries[i]
+
+	for _, country := range Countries {
+		switch code {
+		case country.Alpha2:
+			return country, nil
+		case country.Alpha3:
+			return country, nil
+		case country.Numeric:
+			return country, nil
 		default:
-			return "", ErrInvalidCountryCode
+			continue
 		}
 	}
+	return Country{}, ErrInvalidCountryCode
+}
+
+func getFormat(country Country, format string) (string, error) {
+	format = strings.ToUpper(format)
+
+	fmt.Println(format)
+	fmt.Println(country)
+
 	switch format {
 	case Alpha2:
-		return c.Alpha2, nil
-	case Alpha3:
-		return c.Alpha3, nil
-	case Numeric:
-		return c.Numeric, nil
+		return country.Alpha2, nil
+	case country.Alpha3:
+		return Alpha3, nil
+	case country.Numeric:
+		return Numeric, nil
 	default:
 		return "", ErrInvalidFormat
 	}

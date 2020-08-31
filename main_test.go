@@ -1,34 +1,48 @@
 package countrycode
 
 import (
-	"io/ioutil"
-	"log"
-	"os"
 	"testing"
 )
 
-func TestMain(m *testing.M) {
-	log.SetOutput(ioutil.Discard)
-	os.Exit(m.Run())
-}
+// func TestMain(m *testing.M) {
+// log.SetOutput(ioutil.Discard)
+// os.Exit(m.Run())
+// }
 
-func TestConvertNumeric(t *testing.T) {
-	var c []string = []string{
+func TestConvert(t *testing.T) {
+	var cases []string = []string{
 		"US", "USA", "840",
 		"CA", "CAN", "124",
 		"MX", "MEX", "484",
 		"GB", "GBR", "826",
-		"XY", "XYZ", "000",
 	}
-	for _, i := range c {
-		str, err := Convert(i, Numeric)
+	for _, input := range cases {
+		t.Log(input)
+		c, err := Convert(input, Numeric)
 		if err != nil {
-			if err != ErrInvalidCountryCode && err != ErrInvalidFormat {
-				t.Fail()
-			}
-			t.Log(err.Error())
-			continue
+			t.Fatal(err)
 		}
-		t.Log(str)
+		t.Log(c)
 	}
+}
+
+func TestGetCountry(t *testing.T) {
+	var cases []string = []string{
+		"US", "USA", "840",
+		"CA", "CAN", "124",
+		"MX", "MEX", "484",
+		"GB", "GBR", "826",
+	}
+	for _, input := range cases {
+		t.Log(input)
+		c, err := getCountry(input)
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(c)
+	}
+}
+
+func TestGetFormat(t *testing.T) {
+
 }
