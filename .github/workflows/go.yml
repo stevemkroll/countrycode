@@ -1,0 +1,9 @@
+name: Status
+on: [push, pull_request]
+jobs:
+  test-status:
+    name: status
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: go test -v .
